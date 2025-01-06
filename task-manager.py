@@ -1,5 +1,6 @@
 #Initial tasks list
 tasks = []
+descriptions = {}
 
 #Auxiliary functions
 def displayTasks(all_tasks):
@@ -43,6 +44,12 @@ def validTaskNumber(all_tasks, operation):
         return number
 
 #Operations
+def addDescription(task, descriptions):
+    description = input('Add a description: ')
+    descriptions [task] = description
+
+    return descriptions
+
 def editTask(all_tasks):
     task_number = validTaskNumber(all_tasks, 'edit')
 
