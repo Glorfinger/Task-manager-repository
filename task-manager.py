@@ -25,11 +25,29 @@ def newOperation(all_tasks):
     else: 
         newOperation(all_tasks)
 
+def validTaskNumber(all_tasks, operation):
+    task_number = input(f'Enter the number of the task you want to {operation}: ')
+
+    valid = False
+    while not valid:
+        try:
+            number = int(task_number)
+            valid = True
+        except:
+            task_number = input('Please provide a valid task number: ')
+    
+    if not (0 < task_number < len(all_tasks)):
+        print('Task not found !')
+        validTaskNumber(all_tasks, operation)
+    else:
+        return number
+
+#Operations
 def editTask(all_tasks):
-    task_number = input('Enter the number of the task you want edit: ')
+    task_number = validTaskNumber(all_tasks, 'edit')
 
     new_task = input('Edit task: ')
-    all_tasks[int(task_number)-1] = new_task
+    all_tasks[task_number-1] = new_task
 
     print(f'Item {task_number} edited!')
 
@@ -37,9 +55,9 @@ def editTask(all_tasks):
     newOperation(all_tasks)
 
 def removeTask(all_tasks):
-    task_number = input('Enter the number of the task you want to remove: ')
+    task_number = validTaskNumber(all_tasks, 'remove')
 
-    all_tasks.remove(all_tasks[int(task_number)-1])
+    all_tasks.remove(all_tasks[task_number-1])
 
     print(f'\nItem {task_number} removed!')   
 
